@@ -11,7 +11,7 @@ sub get_ww_versions {
     return $ww_versions;
 }
 
-# A list of packages for various binaries that we need. 
+# A list of packages for various binaries that we need.
 my $binary_prerequisites = {
     mkdir => 'coreutils',
     mv => 'coreutils',
@@ -25,7 +25,7 @@ my $binary_prerequisites = {
     dvipng => 'dvipng',
     curl => 'curl',
     perl => 'perl',
-    netpbm => 'netpbm',  #provides giftopnm, ppmtopgm, pnmtops, pnmtopng, 
+    netpbm => 'netpbm',  #provides giftopnm, ppmtopgm, pnmtops, pnmtopng,
     netpbm_progs => 'netpbm-progs',               #and pgntopnm
     git => 'git',
     svn => 'subversion',
@@ -39,7 +39,7 @@ my $binary_prerequisites = {
     mod_fcgid => 'mod_fcgid',
     mod_perl => 'mod_perl',
     mod_apreq => 'libapreq2',
-    
+
     preview_latex => 'tex-preview',
     texlive => 'texlive-latex',
     texlive_preprint => 'texlive-preprint',
@@ -56,7 +56,7 @@ my $perl_prerequisites = {
     'Test::Simple' => 'perl-Test-Simple',
     'Test::Requires' => 'perl-Test-Requires',
     'Test::TCP' => 'perl-Test-TCP',
-    'HTTP::Tiny' => 'perl-HTTP-Tiny', 
+    'HTTP::Tiny' => 'perl-HTTP-Tiny',
     'Plack'      => 'perl-Plack',
     'Apache2::Request' => 'perl-libapreq2',
     'Apache2::Cookie' => 'perl-libapreq2',
@@ -106,7 +106,7 @@ my $perl_prerequisites = {
     'Locale::Maketext::Simple' => 'perl-Locale-Maketext-Simple',
     'LWP::Protocol::https' => 'CPAN', #need cpan for higher version
     'Mail::Sender' => 'perl-Mail-Sender',
-    'MIME::Base64' => 'perl', 
+    'MIME::Base64' => 'perl',
     'Net::IP' => 'perl-Net-IP',
     'Net::LDAPS' => 'perl-LDAP',
     'Net::OAuth' => 'perl-Net-OAuth',
@@ -127,15 +127,18 @@ my $perl_prerequisites = {
     'Text::CSV' => 'perl-Text-CSV',
     'Text::Wrap' => 'perl',
     'Tie::IxHash' => 'perl-Tie-IxHash',
+    'URI::Escape' => 'perl',
     'Time::HiRes' => 'perl-Time-HiRes',
     'Time::Zone' => 'perl-TimeDate',
-    'URI::Escape' => 'perl',
     'UUID::Tiny' => 'CPAN',
     'XML::Parser' => 'perl-XML-Parser',
     'XML::Parser::EasyTree' => 'CPAN',
     'XML::Writer' => 'perl-XML-Writer',
     'XMLRPC::Lite' => 'perl-XMLRPC-Lite',
     'YAML' => 'perl-YAML',
+    'Data::Dump' => 'CPAN',
+    'Email::Simple' => 'perl-Email-Simple',
+    'Email::Sender::Simple' => 'CPAN',
 };
 
 sub get_perl_prerequisites {
@@ -201,10 +204,10 @@ sub CPAN_install {
 # after installing prerequieists
 sub postpreq_hook {
     # For installing missing tex package.  We can safely use the fedora
-    # package because its just a latex sytle file. 
+    # package because its just a latex sytle file.
     run_command(['curl', '-ksSO', 'http://dl.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/os/Packages/t/texlive-path-svn22045.3.05-17.fc25.1.noarch.rpm']);
     run_command(['rpm','-ivh','--replacepkgs','texlive-path-svn22045.3.05-17.fc25.1.noarch.rpm'])
-    
+
 }
 
 # A command for checking if the required services are running and
