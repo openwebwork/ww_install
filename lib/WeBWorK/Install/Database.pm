@@ -65,8 +65,8 @@ sub get_dsn {
 ############################################################
 
 sub create_database {
-    my ( $dsn, $root_pw, $ww_db, $ww_user, $ww_pw ) = @_;
-    my $dbh = DBI->connect( 'DBI:mysql:database=mysql', 'root', $root_pw );
+    my ( $server, $root_pw, $ww_db, $ww_user, $ww_pw ) = @_;
+    my $dbh = DBI->connect( 'DBI:mysql:database=mysql;host=$server', 'root', $root_pw );
     print_and_log("Connected to mysql as root...");
     $dbh->do("CREATE DATABASE IF NOT EXISTS $ww_db")
       or die "Could not create $ww_db database: $!\n";
