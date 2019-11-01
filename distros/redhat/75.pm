@@ -180,7 +180,7 @@ sub midpreq_hook {
 
 # A command for updating the package sources
 sub update_sources {
-    run_command(['yum', '-y', 'install', 'epel-release']);
+    run_command(['yum', '-y', 'install', 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm']);
 };
 
 # A command for updating the system
