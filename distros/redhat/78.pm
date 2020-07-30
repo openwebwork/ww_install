@@ -1,11 +1,11 @@
-package redhat::75;
+package redhat::78;
 
 use strict;
 use warnings;
 
 use WeBWorK::Install::Utils;
 
-my $ww_versions = ['2.13'];
+my $ww_versions = ['2.14'];
 
 sub get_ww_versions {
     return $ww_versions;
@@ -180,7 +180,7 @@ sub midpreq_hook {
 
 # A command for updating the package sources
 sub update_sources {
-    run_command(['yum', '-y', 'install', 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm']);
+    run_command(['rpm', '-Uhv', 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm']);
 };
 
 # A command for updating the system
