@@ -1803,6 +1803,14 @@ sub get_MathJax {
     my $success = run_command($cmd);
     if ($success) {
         print_and_log("Downloaded MathJax to $WW_PREFIX/MathJax\n");
+	# switch to MathJax 2 since MathJax 3 is not yet supported
+	my $cmd2 = [ $full_path, 'checkout', 'legacy-v2' ];
+	my $success2 = run_command($cmd2);
+	if ($success2) {
+	    print_and_log("Switched to MathJax v2\n");
+	} else {
+	    print_and_log("Could not checkout MathJax version 2.  You'll have to do this manually.\n");
+	}
     } else {
         print_and_log("Could not download MathJax. You'll have to do this manually.\n");
     }
